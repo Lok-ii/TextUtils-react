@@ -61,6 +61,24 @@ const TextComponent = () => {
           Remove Extra Spaces
         </button>
       </div>
+
+      <div className="textDetailsContainer">
+        <h1 className="summaryHead">Summary of your text : </h1>
+
+        <p className="words">
+          Number of words:{" "}
+          {state.split(/\s+/).filter((word) => word !== "").length}
+        </p>
+        <p className="characters">Number of characters: {state.length}</p>
+        <p className="time">
+          Reading Time:{" "}
+          {(
+            0.008 *
+            state.split(" ").filter((e) => e.length !== 0).length
+          ).toFixed(3)}{" "}
+          Minutes
+        </p>
+      </div>
     </div>
   );
 };
