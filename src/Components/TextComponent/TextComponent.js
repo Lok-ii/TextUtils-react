@@ -55,7 +55,7 @@ const TextComponent = () => {
   }
   useEffect(() => {
     checkDisabled();
-  }, []);
+  }, [state]);
   return (
     <div className="textComponent">
       <ToastContainer />
