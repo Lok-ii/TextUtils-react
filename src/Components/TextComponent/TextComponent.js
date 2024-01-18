@@ -6,10 +6,10 @@ import "react-toastify/dist/ReactToastify.css";
 
 const TextComponent = () => {
   const textRef = useRef(null);
-  const [disbled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(true);
 
   const notify = (type, value) => {
-    if (type === "UPPERCASE" || type === "LOWERCASE" || type === "COPY") {
+    if (type === "UPPERCASE" || type === "LOWERCASE" || type === "COPIED") {
       toast.success(value, {
         position: "top-left",
       });
@@ -37,7 +37,7 @@ const TextComponent = () => {
         return "";
       case "COPY":
         navigator.clipboard.writeText(state);
-        break;
+        return state;
       case "REMOVE":
         return state.split(/\s+/).join(" ");
       default:
@@ -55,7 +55,7 @@ const TextComponent = () => {
   }
   useEffect(() => {
     checkDisabled();
-  }, [state]);
+  }, []);
   return (
     <div className="textComponent">
       <ToastContainer />
@@ -79,7 +79,7 @@ const TextComponent = () => {
       <div className="btnContainer">
         <button
           className="upper"
-          disabled={disbled}
+          disabled={disabled}
           onClick={() => {
             dispatch("UPPERCASE");
             notify("UPPERCASE", "CONVERTED TO UPPERCASE!");
@@ -89,7 +89,7 @@ const TextComponent = () => {
         </button>
         <button
           className="lower"
-          disabled={disbled}
+          disabled={disabled}
           onClick={() => {
             dispatch("LOWERCASE");
             notify("LOWERCASE", "converted to lowercase!");
@@ -99,7 +99,7 @@ const TextComponent = () => {
         </button>
         <button
           className="text"
-          disabled={disbled}
+          disabled={disabled}
           onClick={() => {
             dispatch("CLEAR");
             notify("CLEARED", "Text has been cleared!");
@@ -109,17 +109,17 @@ const TextComponent = () => {
         </button>
         <button
           className="copy"
-          disabled={disbled}
+          disabled={disabled}
           onClick={() => {
             dispatch("COPY");
-            notify("COPY", "Successfully copied!");
+            notify("COPIED", "Successfully copied!");
           }}
         >
           Copy to Clipboard
         </button>
         <button
           className="remove"
-          disabled={disbled}
+          disabled={disabled}
           onClick={() => {dispatch("REMOVE")
         notify("REMOVE", "Removed extra spaces!")}}
         >
@@ -151,6 +151,7 @@ const TextComponent = () => {
           id="previewBox"
           value={state}
           onKeyUp={() => alert("Cannot Edit Preview Document")}
+          readOnly
         ></textarea>
       </div>
     </div>
