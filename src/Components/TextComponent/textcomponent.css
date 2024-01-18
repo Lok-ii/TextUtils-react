@@ -25,10 +25,13 @@ label{
     font-weight: 500;
 }
 
-#box{
+#box, #previewBox{
     resize: none;
     width: 80%;
     height: 15rem;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 
 .btnContainer{
@@ -49,6 +52,10 @@ button{
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
+}
+
+button:disabled{
+    opacity: 0.7;
 }
 
 .text{
@@ -75,7 +82,5 @@ button{
 }
 
 #previewBox{
-    resize: none;
-    width: 80%;
     height: 8rem;
 }

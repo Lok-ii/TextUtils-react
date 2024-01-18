@@ -11,3 +11,11 @@
     font-weight: 600;
     color: #06B6D4;
 }
+
+nav{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    font-weight: 500;
+}

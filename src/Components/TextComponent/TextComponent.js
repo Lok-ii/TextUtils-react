@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useReducer, useRef } from "react";
 import "./textcomponent.css";
 
 const TextComponent = () => {
   const textRef = useRef(null);
+  const [disbled, setDisabled] = useState(true);
 
   const textFunc = (state, action) => {
     switch (action) {
@@ -26,6 +27,16 @@ const TextComponent = () => {
   };
 
   const [state, dispatch] = useReducer(textFunc, "");
+function checkDisabled(){
+        if(state == ""){
+            setDisabled(true);
+        }else{
+            setDisabled(false);
+        }
+      }
+  useEffect(()=>{
+      checkDisabled();
+  }, [state]);
   return (
     <div className="textComponent">
       <h1 className="heading">
@@ -39,25 +50,26 @@ const TextComponent = () => {
           ref={textRef}
           onChange={() => {
             dispatch("CHANGE");
+            checkDisabled();
           }}
           id="box"
           value={state}
         ></textarea>
       </div>
       <div className="btnContainer">
-        <button className="upper" onClick={() => dispatch("UPPERCASE")}>
+        <button className="upper" disabled={disbled} onClick={() => dispatch("UPPERCASE")}>
           Convert to Uppercase
         </button>
-        <button className="lower" onClick={() => dispatch("LOWERCASE")}>
+        <button className="lower" disabled={disbled} onClick={() => dispatch("LOWERCASE")}>
           Convert to Lowercase
         </button>
-        <button className="text" onClick={() => dispatch("CLEAR")}>
+        <button className="text" disabled={disbled} onClick={() => dispatch("CLEAR")}>
           Clear Text
         </button>
-        <button className="copy" onClick={() => dispatch("COPY")}>
+        <button className="copy" disabled={disbled} onClick={() => dispatch("COPY")}>
           Copy to Clipboard
         </button>
-        <button className="remove" onClick={() => dispatch("REMOVE")}>
+        <button className="remove" disabled={disbled} onClick={() => dispatch("REMOVE")}>
           Remove Extra Spaces
         </button>
       </div>

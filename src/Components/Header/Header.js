@@ -7,9 +7,9 @@ const Header = () => {
     <div className='header'>
         <p className="logo">TextUtils</p>
         <nav>
-            {/* <Link to={"/"}>Home</Link>
-            <Link to={"/about"}>About Us</Link>
-            <Link to={"/contact"}>Contact</Link> */}
+            <p>Home</p>
+            <p>About Us</p>
+            <p>Contact</p>
         </nav>
     </div>
   )
