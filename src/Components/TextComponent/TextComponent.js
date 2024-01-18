@@ -79,6 +79,11 @@ const TextComponent = () => {
           Minutes
         </p>
       </div>
+
+      <div className="previewContainer">
+        <h2 className="previewTitle">Preview Document</h2>
+        <textarea name="previewBox" id="previewBox" value={state} onKeyUp={()=>alert("Cannot Edit Preview Document")}></textarea>
+      </div>
     </div>
   );
 };
