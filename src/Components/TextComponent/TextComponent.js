@@ -1,5 +1,6 @@
 import React from 'react';
 import { useReducer, useRef } from 'react';
+import "./textcomponent.css";
 
 const TextComponent = () => {
     const textRef = useRef(null);
